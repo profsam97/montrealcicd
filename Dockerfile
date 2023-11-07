@@ -6,6 +6,6 @@ RUN cd montreal && npm run build
 
 FROM node:14
 WORKDIR /usr/src/app
-COPY --from=buildnode /usr/src/app /usr/src/app/
+COPY --from=buildnode /usr/src/app/montreal /usr/src/app/
 EXPOSE 5000
 CMD [ "npm", "start" ]
