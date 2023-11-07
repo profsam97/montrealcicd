@@ -95,7 +95,7 @@ pipeline {
         stage("Deploy App To Kubernetes") {
             agent{label 'KOPS'}
             steps {
-            sh "helm upgrade --install --force montrealapp -stack helm/montreal-chart --set appimage=${registry}:V${BUILD_NUMBER} --namespace prod"
+            sh "helm upgrade --install --force montrealapp helm/montreal-chart --set appimage=${registry}:V${BUILD_NUMBER} --namespace prod"
             }
         }
         
