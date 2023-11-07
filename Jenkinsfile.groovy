@@ -54,7 +54,7 @@ pipeline {
                 sh ''' ${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=montreal \
                 -Dsonar.projectName=Montrealapp \
                 -Dsonar.projectVersion=1.0.0 \
-                -Dsonar.projectSources=src/  
+                -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info \
                 -Dsonar.javascript.exclusions=node_modules/**/*
                 '''
             }
