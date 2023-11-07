@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: montrealdb
+  labels:
+    app: montrealdb
+spec:
+  selector:
+    matchLabels:
+      app: montrealdb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: montrealdb
+    spec:
+      containers:
+        - name: montrealdb
+          image: mongo
+          # volumeMounts:
+          #   - mountPath: /var/lib/mongodb
+          #     name: montreal-db-data
+          ports:
+            - containerPort: 27017
+              name: montrealdb-port
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: MONGO_INITDB_ROOT_USERNAME
+                  name: montreal-secret
+            -  name: MONGO_INITDB_ROOT_PASSWORD
+               valueFrom:
+                 secretKeyRef:
+                   key: MONGO_INITDB_ROOT_PASSWORD
+                   name: montreal-secret
+      # nodeSelector:
+      #   zone: us-east-2a  # to indicate which zone we want our pods to run, should be same with the zone our volume is.
+      # volumes:
+      #   - name: montreal-db-data
+      #     awsElasticBlockStore:
+      #       volumeID: vol-0ec5b25c832a8189c
+      #       fsType: ext4
+      # initContainers:
+      #   - name: busybox
+      #     image: busybox:latest
+      #     args: [ "rm", "-rf", "/data/db/lost+found" ] # by default, aws EBS create a lost + found dir, and mongodb expect the dir to be empty, so we have to prune it first
+      #     volumeMounts:
+      #       - name: montreal-db-data
+      #         mountPath: /var/lib/mongodb
