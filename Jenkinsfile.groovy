@@ -55,7 +55,7 @@ pipeline {
                 -Dsonar.projectName=Montrealapp \
                 -Dsonar.projectVersion=1.0.0 \
                 -Dsonar.projectSources=src/  
-                -Dsonar.javascript.lcov.reportPaths=coverage/lcov-report/lcov.info \
+                -Dsonar.javascript.lcov.reportPaths=./coverage/lcov-report/lcov.info \
                 -Dsonar.javascript.exclusions=node_modules/**/*
                 '''
             }
