@@ -33,7 +33,8 @@ pipeline {
             steps {
                 echo 'Running code linting'
                 sh 'npm install eslint'
-                sh 'npx eslint .'
+                sh 'npm init @eslint/config'
+                sh 'npx eslint '
             }
         }
         stage('build') {
