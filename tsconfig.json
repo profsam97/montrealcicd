@@ -1,0 +1,13 @@
+{
+    "extends": "@tsconfig/node16/tsconfig.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "module": "commonjs",
+        "target": "es6",
+        "esModuleInterop": true,
+        "typeRoots": ["./types"],
+        "types": ["node", "jest"]
+    },
+    "include": ["src", "types", "ignore.d.ts"],
+    "exclude": ["node_modules"]
+}
